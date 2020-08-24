@@ -1,5 +1,6 @@
 module.exports = [
   { 
+    city: 'Portland',
     category: 'hotel',
     business_type: 'hotel',
     business_name: 'The Nines',
@@ -8,6 +9,7 @@ module.exports = [
     image_url: 'https://placekitten.com/300/300'
   },
   {
+    city: 'Portland',
     category: 'buffet',
     business_type: 'restaurant',
     business_name: 'Chicken Connection',
@@ -16,9 +18,10 @@ module.exports = [
     image_url: 'https://placekitten.com/300/300'
   },
   {
+    city: 'Portland',
     category: 'cafe',
     business_type: 'restaurant',
-    business_name: 'Milton/s Coffee Co',
+    business_name: 'Milton\'s Coffee Co',
     review: 'I ordered a mocha and it was so burnt tasting I had to toss it.',
     rating: 1,
     image_url: 'https://placekitten.com/300/300'
