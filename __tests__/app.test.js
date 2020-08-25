@@ -13,7 +13,7 @@ describe('routes', () => {
     category: 'Thai',
     business_type: 'Restaurant',
     business_name: 'Thai Restaurant',
-    review: 'It\s bad',
+    review: 'It\'s bad',
     rating: 1,
     image_url: 'cat.jpeg',
     trip_id: 1,
@@ -49,7 +49,7 @@ describe('routes', () => {
     done();
   });
 
-  test('returns all todos for the user when hitting GET /todos', async(done) => {
+  test('returns all todos for the user when hitting GET / detail-page', async(done) => {
     const expected = [
       {
         id: 4,
@@ -57,7 +57,7 @@ describe('routes', () => {
         category: 'Thai',
         business_type: 'Restaurant',
         business_name: 'Thai Restaurant',
-        review: 'It\s bad',
+        review: 'It\'s bad',
         rating: 1,
         image_url: 'cat.jpeg',
         trip_id: 1,
@@ -74,66 +74,42 @@ describe('routes', () => {
     done();
   });
   
-  // test('returns a single todo for the user when hitting GET /todos/:id', async(done) => {
-  //   const expected = [{
-  //     id: 3,
-  //     todo: 'eat lunch',
-  //     completed: false,
-  //     owner_id: 2,
-  //   }];
-  //   const data = await fakeRequest(app)
-  //     .get('/api/todos/3')
-  //     .set('Authorization', token)
-  //     .expect('Content-Type', /json/)
-  //     .expect(200);
-  //   expect(data.body).toEqual(expected);
-  //   done();
-  // });
-  // test('updates a single todo for the user when hitting PUT /todos/:id', async(done) => {
-  //   const newTodo = 
-  //     {
-  //       id: 3,
-  //       todo: 'eat lunch',
-  //       completed: true,
-  //       owner_id: 2,
-  //     }
-  //   ;
-  //   const expectedAllTodos = [{
-  //     id: 3,
-  //     todo: 'eat lunch',
-  //     completed: true,
-  //     owner_id: 2,
-  //   }];
+  test('returns a single trip from trip id for the user when hitting GET /detail-page/:id', async(done) => {
+    const expected = [{
+      id: 4,
+      city: 'Portland',  
+      category: 'Thai',
+      business_type: 'Restaurant',
+      business_name: 'Thai Restaurant',
+      review: 'It\'s bad',
+      rating: 1,
+      image_url: 'cat.jpeg',
+      trip_id: 1,
+      address: '123 Fake St.',
+      owner_id: 2,
+    }];
+    const data = await fakeRequest(app)
+      .get('/api/detail-page/1')
+      .set('Authorization', token)
+      .expect('Content-Type', /json/)
+      .expect(200);
+    expect(data.body).toEqual(expected);
+    done();
+  });
 
-  //   const data = await fakeRequest(app)
-  //     .put('/api/todos/3')
-  //     .send(newTodo)
-  //     .set('Authorization', token)
-  //     .expect('Content-Type', /json/)
-  //     .expect(200);
-  //   const allTodos = await fakeRequest(app)
-  //     .get('/api/todos')
-  //     .send(newTodo)
-  //     .set('Authorization', token)
-  //     .expect('Content-Type', /json/)
-  //     .expect(200);
-  //   expect(data.body).toEqual(newTodo);
-  //   expect(allTodos.body).toEqual(expectedAllTodos);
-  //   done();
-  // });
-
-  // test('delete a single todo for the user when hitting DELETE /todos/:id', async(done) => {
-  //   await fakeRequest(app)
-  //     .delete('/api/todos/4')
-  //     .set('Authorization', token)
-  //     .expect('Content-Type', /json/)
-  //     .expect(200);
-  //   const data = await fakeRequest(app)
-  //     .get('/api/todos/')
-  //     .set('Authorization', token)
-  //     .expect('Content-Type', /json/)
-  //     .expect(200);
-  //   expect(data.body).toEqual([]);
-  //   done();
-  // });
+  // TODO
+//   test('delete a single trip for the user when hitting DELETE /detail-page/:id', async(done) => {
+//     await fakeRequest(app)
+//       .delete('/api/detail-page/1')
+//       .set('Authorization', token)
+//       .expect('Content-Type', /json/)
+//       .expect(200);
+//     const data = await fakeRequest(app)
+//       .get('/api/detail-page/')
+//       .set('Authorization', token)
+//       .expect('Content-Type', /json/)
+//       .expect(200);
+//     expect(data.body).toEqual([]);
+//     done();
+//   });
 });
