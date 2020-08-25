@@ -1,64 +1,115 @@
 require('dotenv').config();
-
 const { execSync } = require('child_process');
-
 const fakeRequest = require('supertest');
 const app = require('../lib/app');
 const client = require('../lib/client');
 
-describe('app routes', () => {
-  describe('routes', () => {
-    let token;
-  
-    beforeAll(async done => {
-      execSync('npm run setup-db');
-  
-      client.connect();
-  
-      const signInData = await fakeRequest(app)
-        .post('/auth/signup')
-        .send({
-          email: 'jon@user.com',
-          password: '1234'
-        });
-      
-      token = signInData.body.token;
-  
-      return done();
-    });
-  
-    afterAll(done => {
-      return client.end(done);
-    });
+describe('routes', () => {
+  let token;
 
-  test('returns animals', async() => {
+  const newTrip = {
+    id: 4,
+    city: 'Portland',  
+    category: 'Thai',
+    business_type: 'Restaurant',
+    business_name: 'Thai Restaurant',
+    review: 'It\'s bad',
+    rating: 1,
+    image_url: 'cat.jpeg',
+    trip_id: 1,
+    address: '123 Fake St.',
+    owner_id: 2,
+  };
 
-    const expectation = [
-      {
-        'id': 1,
-        'name': 'bessie',
-        'coolfactor': 3,
-        'owner_id': 1
-      },
-      {
-        'id': 2,
-        'name': 'jumpy',
-        'coolfactor': 4,
-        'owner_id': 1
-      },
-      {
-        'id': 3,
-        'name': 'spot',
-        'coolfactor': 10,
-        'owner_id': 1
-      }
-    ];
+  beforeAll(async done => {
+    execSync('npm run setup-db');
+    client.connect();
+    const signInData = await fakeRequest(app)
+      .post('/auth/signup')
+      .send({
+        email: 'jon@user.com',
+        password: '1234'
+      });
+    token = signInData.body.token;
+    return done();
+  });
 
+  afterAll(done => {
+    return client.end(done);
+  });
+
+  test('returns a new trip when creating new trip', async(done) => {
     const data = await fakeRequest(app)
-      .get('/animals')
+      .post('/api/detail-page')
+      .send(newTrip)
+      .set('Authorization', token)
       .expect('Content-Type', /json/)
       .expect(200);
-
-    expect(data.body).toEqual(expectation);
+    expect(data.body).toEqual(newTrip);
+    done();
   });
+
+  test('returns all todos for the user when hitting GET / detail-page', async(done) => {
+    const expected = [
+      {
+        id: 4,
+        city: 'Portland',  
+        category: 'Thai',
+        business_type: 'Restaurant',
+        business_name: 'Thai Restaurant',
+        review: 'It\'s bad',
+        rating: 1,
+        image_url: 'cat.jpeg',
+        trip_id: 1,
+        address: '123 Fake St.',
+        owner_id: 2,
+      }
+    ];
+    const data = await fakeRequest(app)
+      .get('/api/detail-page')
+      .set('Authorization', token)
+      .expect('Content-Type', /json/)
+      .expect(200);
+    expect(data.body).toEqual(expected);
+    done();
+  });
+  
+  test('returns a single trip from trip id for the user when hitting GET /detail-page/:id', async(done) => {
+    const expected = [{
+      id: 4,
+      city: 'Portland',  
+      category: 'Thai',
+      business_type: 'Restaurant',
+      business_name: 'Thai Restaurant',
+      review: 'It\'s bad',
+      rating: 1,
+      image_url: 'cat.jpeg',
+      trip_id: 1,
+      address: '123 Fake St.',
+      owner_id: 2,
+    }];
+    const data = await fakeRequest(app)
+      .get('/api/detail-page/1')
+      .set('Authorization', token)
+      .expect('Content-Type', /json/)
+      .expect(200);
+    expect(data.body).toEqual(expected);
+    done();
+  });
+
+  // TODO
+//   test('delete a single trip for the user when hitting DELETE /detail-page/:id', async(done) => {
+//     await fakeRequest(app)
+//       .delete('/api/detail-page/1')
+//       .set('Authorization', token)
+//       .expect('Content-Type', /json/)
+//       .expect(200);
+//     const data = await fakeRequest(app)
+//       .get('/api/detail-page/')
+//       .set('Authorization', token)
+//       .expect('Content-Type', /json/)
+//       .expect(200);
+//     expect(data.body).toEqual([]);
+//     done();
+//   });
 });
