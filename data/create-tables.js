@@ -26,9 +26,11 @@ async function run() {
                     review TEXT NOT NULL,
                     rating INTEGER NOT NULL,
                     image_url TEXT NOT NULL,
+                    trip_id INTEGER NOT NULL,
                     owner_id INTEGER NOT NULL REFERENCES users(id)
-            );
-        `);
+                    );
+                `);
+
 
     console.log('create tables complete', getEmoji(), getEmoji(), getEmoji());
   }
