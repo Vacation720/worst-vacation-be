@@ -8,6 +8,7 @@ module.exports = [
     rating: 1,
     image_url: 'https://placekitten.com/300/300',
     trip_id: 1, 
+    address: '123 Fake Street',
     owner_id: 3
   },
   {
@@ -19,6 +20,7 @@ module.exports = [
     rating: 2,
     image_url: 'https://placekitten.com/300/300',
     trip_id: 1,
+    address: '1234 Fake Street',
     owner_id: 3
   },
   {
@@ -30,6 +32,7 @@ module.exports = [
     rating: 1,
     image_url: 'https://placekitten.com/300/300',
     trip_id: 1,
+    address: '1235 Fake Street',
     owner_id: 3
   },
 ];
