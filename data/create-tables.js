@@ -22,7 +22,7 @@ async function run() {
                     city TEXT NOT NULL,
                     business_name TEXT NOT NULL,
                     review TEXT NOT NULL,
-                    rating INTEGER NOT NULL,
+                    rating VARCHAR(512) NOT NULL,
                     image_url TEXT NOT NULL,
                     address TEXT NOT NULL,
                     trip_id INTEGER NOT NULL,
