@@ -27,10 +27,10 @@ async function run() {
     await Promise.all(
       yelpData.map(business => {
         return client.query(`
-                    INSERT INTO yelp_data (category, business_type, business_name, review, rating, image_url, address, city, trip_id, owner_id )
-                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);
+                    INSERT INTO yelp_data ( business_name, review, rating, image_url, address, city, trip_id, owner_id )
+                    VALUES ($1, $2, $3, $4, $5, $6, $7, $8);
                 `,
-        [business.category, business.business_type, business.business_name, business.review,  business.rating, business.image_url, business.address, business.city,  business.trip_id, user.id]);
+        [business.business_name, business.review,  business.rating, business.image_url, business.address, business.city,  business.trip_id, user.id]);
       })
     );
     

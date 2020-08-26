@@ -20,8 +20,6 @@ async function run() {
                 CREATE TABLE yelp_data (
                     id SERIAL PRIMARY KEY NOT NULL,
                     city TEXT NOT NULL,
-                    category TEXT NOT NULL,
-                    business_type TEXT NOT NULL,
                     business_name TEXT NOT NULL,
                     review TEXT NOT NULL,
                     rating INTEGER NOT NULL,
