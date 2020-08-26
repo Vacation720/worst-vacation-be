@@ -1,7 +1,6 @@
 module.exports = [
   { 
     city: 'Portland',
-    category: 'hotel',
     business_type: 'hotel',
     business_name: 'The Nines',
     review: 'Probably the most disgusting thing was the bathroom it self. Beautiful Carrera marble and stainless fixtures surround a dingy, filthy tub',
@@ -13,7 +12,6 @@ module.exports = [
   },
   {
     city: 'Portland',
-    category: 'buffet',
     business_type: 'restaurant',
     business_name: 'Chicken Connection',
     review: 'The dumpsters out back probably have better options.',
@@ -25,7 +23,6 @@ module.exports = [
   },
   {
     city: 'Portland',
-    category: 'tattoo',
     business_type: 'restaurant',
     business_name: 'Edgy Tatts',
     review: 'I ordered a mocha and it was so burnt tasting I had to toss it.',

@@ -10,8 +10,6 @@ describe('routes', () => {
   const newTrip = {
     id: 4,
     city: 'Portland',  
-    category: 'Thai',
-    business_type: 'Restaurant',
     business_name: 'Thai Restaurant',
     review: 'It\'s bad',
     rating: 1,
@@ -54,8 +52,6 @@ describe('routes', () => {
       {
         id: 4,
         city: 'Portland',  
-        category: 'Thai',
-        business_type: 'Restaurant',
         business_name: 'Thai Restaurant',
         review: 'It\'s bad',
         rating: 1,
@@ -78,8 +74,6 @@ describe('routes', () => {
     const expected = [{
       id: 4,
       city: 'Portland',  
-      category: 'Thai',
-      business_type: 'Restaurant',
       business_name: 'Thai Restaurant',
       review: 'It\'s bad',
       rating: 1,
