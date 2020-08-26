@@ -106,4 +106,35 @@ describe('routes', () => {
 //     expect(data.body).toEqual([]);
 //     done();
 //   });
+
+test('returns an error when trying to get without an authorization key', async(done) => {
+
+  const expectation = 
+    { 'error': 'no authorization found' };
+
+  const data = await fakeRequest(app)
+    .get('/api/detail-page')
+    .expect('Content-Type', /json/)
+    .expect(401);
+
+  expect(data.body).toEqual(expectation);
+  done();
 });
+
+test('returns an error when trying to post without an authorization key', async(done) => {
+
+  const expectation = 
+    { 'error': 'no authorization found' };
+
+  const data = await fakeRequest(app)
+    .post('/api/detail-page')
+    .send(newTrip)
+    .expect('Content-Type', /json/)
+    .expect(401);
+
+  expect(data.body).toEqual(expectation);
+  done();
+});
+
+});
+
