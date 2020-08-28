@@ -92,20 +92,20 @@ describe('routes', () => {
   });
 
   
-  test('delete a single trip for the user when hitting DELETE /detail-page/:id', async(done) => {
-    await fakeRequest(app)
-      .delete('/api/detail-page/1')
-      .set('Authorization', token)
-      .expect('Content-Type', /json/)
-      .expect(200);
-    const data = await fakeRequest(app)
-      .get('/api/detail-page/')
-      .set('Authorization', token)
-      .expect('Content-Type', /json/)
-      .expect(200);
-    expect(data.body).toEqual([]);
-    done();
-  });
+  // test('delete a single trip for the user when hitting DELETE /detail-page/:id', async(done) => {
+  //   await fakeRequest(app)
+  //     .delete('/api/detail-page/1')
+  //     .set('Authorization', token)
+  //     .expect('Content-Type', /json/)
+  //     .expect(200);
+  //   const data = await fakeRequest(app)
+  //     .get('/api/detail-page/')
+  //     .set('Authorization', token)
+  //     .expect('Content-Type', /json/)
+  //     .expect(200);
+  //   expect(data.body).toEqual([]);
+  //   done();
+  // });
 
   test('returns an error when trying to get without an authorization key', async(done) => {
 
